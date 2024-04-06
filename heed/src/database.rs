@@ -1728,10 +1728,10 @@ impl<KC, DC, C> Database<KC, DC, C> {
     /// wtxn.commit()?;
     /// # Ok(()) }
     /// ```
-    pub fn put<'a>(&self, txn: &mut RwTxn, key: &'a KC::EItem, data: &'a DC::EItem) -> Result<()>
+    pub fn put<'a, 'b>(&self, txn: &mut RwTxn, key: &'a KC::EItem, data: &'b DC::EItem) -> Result<()>
     where
         KC: BytesEncode<'a>,
-        DC: BytesEncode<'a>,
+        DC: BytesEncode<'b>,
     {
         assert_eq_env_db_txn!(self, txn);
 
